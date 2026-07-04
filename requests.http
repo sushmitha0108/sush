@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:5000/api
+@token = replace_after_login
+@adminToken = replace_after_admin_login
+
+### Health check
+GET {{baseUrl}}/health
+
+### Register student
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane@college.edu",
+  "password": "password123",
+  "phone": "9876543210",
+  "department": "CSE",
+  "year": 2
+}
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "jane@college.edu",
+  "password": "password123"
+}
+
+### Admin login
+POST {{baseUrl}}/auth/admin/login
+Content-Type: application/json
+
+{
+  "email": "admin@college.edu",
+  "password": "ChangeMe123!"
+}
+
+### List events
+GET {{baseUrl}}/events
+
+### Get current user
+GET {{baseUrl}}/auth/me
+Authorization: Bearer {{token}}
